@@ -1,13 +1,6 @@
-version: '3.8'
-
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
+    build: .
     ports:
       - "5000:5000"
     environment:
@@ -20,13 +13,11 @@ services:
 
   db:
     image: mysql:8.0
-    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: db_auth
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
     volumes:
       - ./db:/docker-entrypoint-initdb.d
     ports:
-      - "3306:3306"
+      - "3307:3306"

@@ -13,7 +13,7 @@
         </ul>
     </nav>
     <form method="POST" action="/objet">
-        <label for="nom">Nom</label> <br>
+        <label for="nom">Nom de l'objet</label> <br>
         <input type="text" name="name" id="objet">
         <br><br>
         <label for="prix">Prix</label> <br>
@@ -21,6 +21,35 @@
         <br><br>
         <input type="submit" value="Ajouter">
     </form>
-    
+
+    <h2>Objets disponibles</h2>
+    <ul id="objets-list"></ul>
+
+    <script>
+        async function chargerObjets() {
+            try {
+                const response = await fetch('/objets');
+                if (!response.ok) {
+                    throw new Error('Erreur lors du chargement des objets');
+                }
+                const objets = await response.json();
+                const list = document.getElementById('objets-list');
+                list.innerHTML = '';
+                objets.forEach((obj) => {
+                    const li = document.createElement('li');
+                    const nom = obj.objet || obj.nom || 'Sans nom';
+                    const prix = obj.prix ?? obj.price ?? 'N/A';
+                    li.textContent = `${nom} — ${prix}`;
+                    list.appendChild(li);
+                });
+            } catch (err) {
+                const list = document.getElementById('objets-list');
+                list.innerHTML = '<li>Erreur de chargement.</li>';
+                console.error(err);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', chargerObjets);
+    </script>
 </body>
 </html>
