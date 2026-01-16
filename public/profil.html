@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie is still a lie</title>
+    <title>Accueil</title>
 </head>
-<body>
-  <nav>
-    <ul class="nav-links">
-      <li><a href="index.html">Index</a></li>
-    </ul>
-  </nav>
-  
-  <div id="login-container">
-    <div id="login-form">
-        <form method="POST" action="/register">
-        <h1>Enregistrement</h1>
+    <body>
+        <ul>
+            <li><a href="accueil.html">Acceuil</a></li>
+            <li><a href="prix.html">Prix</a></li>
+        </ul>
+        <form method="POST" action="/update">
+        <h1>Mettre à jour les informations</h1>
         <label for="name">Nom</label> <br>
         <input type="text" name="nom" id="nom" required>
         <br><br>
@@ -28,9 +24,7 @@
         <label for="password">Mot de passe</label> <br>
         <input type="password" name="password" id="password">
         <br><br>
-        <input type="submit" value="Connexion">
+        <input type="submit" value="Mettre à jour">
       </form>
-    </div>
-  </div>
-</body>
+    </body>
 </html>
